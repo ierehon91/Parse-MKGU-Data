@@ -10,8 +10,8 @@ def main():
     config = parse_config.GetSettings()
     mkgu = parse_mkgu.ParseMKGU(config)
 
-    first_date = input_dates.input_date('начальную')
-    last_date = input_dates.input_date('конечную')
+    first_date = input_dates.get_first_date()
+    last_date = input_dates.get_last_date()
     mkgu.get_interval(first_date.year, first_date.month, first_date.day,
                       last_date.year, last_date.month, last_date.day)
 
