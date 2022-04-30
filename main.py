@@ -16,7 +16,7 @@ def main():
                       last_date.year, last_date.month, last_date.day)
 
     mkgu_data = []
-    for mkgu_account in mkgu_accounts_list[:2]:
+    for mkgu_account in mkgu_accounts_list:
         login = mkgu_account['login']
         password = mkgu_account['password']
         mkgu_data.append(mkgu.parse_data(login, password))
