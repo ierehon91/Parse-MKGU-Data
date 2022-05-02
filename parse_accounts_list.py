@@ -11,3 +11,8 @@ def get_mkgu_accounts_list():
         password = sheet.cell(row=i, column=2).value
         mkgu_accouts_list.append({'login': login, 'password': password})
     return mkgu_accouts_list
+
+
+def print_counts_accounts(mkgu_accouts_list):
+    message = f'Найдено {len(mkgu_accouts_list)} учетных записей МКГУ.'
+    print(message)
