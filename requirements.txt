@@ -1,9 +1,9 @@
-beautifulsoup4 @ file:///C:/Development/Python/MKGU_parser/pip_packs/beautifulsoup4-4.11.1-py3-none-any.whl
-certifi @ file:///C:/Development/Python/MKGU_parser/pip_packs/certifi-2021.10.8-py2.py3-none-any.whl
-chardet @ file:///C:/Development/Python/MKGU_parser/pip_packs/chardet-3.0.4-py2.py3-none-any.whl
-et-xmlfile @ file:///C:/Development/Python/MKGU_parser/pip_packs/et_xmlfile-1.1.0-py3-none-any.whl
-idna @ file:///C:/Development/Python/MKGU_parser/pip_packs/idna-2.8-py2.py3-none-any.whl
-openpyxl @ file:///C:/Development/Python/MKGU_parser/pip_packs/openpyxl-3.0.9-py2.py3-none-any.whl
-requests @ file:///C:/Development/Python/MKGU_parser/pip_packs/requests-2.21.0-py2.py3-none-any.whl
-soupsieve @ file:///C:/Development/Python/MKGU_parser/pip_packs/soupsieve-2.3.2.post1-py3-none-any.whl
-urllib3 @ file:///C:/Development/Python/MKGU_parser/pip_packs/urllib3-1.24.3-py2.py3-none-any.whl
+pip_packs/certifi-2021.10.8-py2.py3-none-any.whl
+pip_packs/chardet-3.0.4-py2.py3-none-any.whl
+pip_packs/et_xmlfile-1.1.0-py3-none-any.whl
+pip_packs/idna-2.8-py2.py3-none-any.whl
+pip_packs/openpyxl-3.0.9-py2.py3-none-any.whl
+pip_packs/soupsieve-2.3.2.post1-py3-none-any.whl
+pip_packs/urllib3-1.24.3-py2.py3-none-any.whl
+pip_packs/beautifulsoup4-4.11.1-py3-none-any.whl
+pip_packs/requests-2.21.0-py2.py3-none-any.whl
