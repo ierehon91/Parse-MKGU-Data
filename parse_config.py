@@ -19,3 +19,6 @@ class GetSettings:
 
     def get_email(self):
         return self.config["Settings"]["email"]
+
+    def get_xlsx_path(self):
+        return self.config["Settings"]["export_xlsx_path"]

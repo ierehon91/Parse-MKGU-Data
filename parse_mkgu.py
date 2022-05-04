@@ -2,6 +2,10 @@ import requests
 import re
 from datetime import datetime
 from bs4 import BeautifulSoup
+import urllib3
+
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class ParseMKGU:
@@ -22,7 +26,7 @@ class ParseMKGU:
 
     def _get_csrf_token(self, url):
         """Получаем csrf_token для авторизации"""
-        token_request = self.session.get(url)
+        token_request = self.session.get(url, verify=False)
         csrf_token = re.findall(r"[^\"\>\{\}\\]{86}==", token_request.text)
         return csrf_token[0]
 

@@ -9,7 +9,10 @@ def get_mkgu_accounts_list():
     for i in range(2, sheet.max_row + 1):
         login = sheet.cell(row=i, column=1).value
         password = sheet.cell(row=i, column=2).value
-        mkgu_accouts_list.append({'login': login, 'password': password})
+        if login is not None:
+            mkgu_accouts_list.append({'login': login, 'password': password})
+        else:
+            break
     return mkgu_accouts_list
 
 
