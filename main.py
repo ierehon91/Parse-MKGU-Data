@@ -2,6 +2,7 @@ import parse_accounts_list
 import parse_mkgu
 import input_dates
 import parse_config
+import export_to_xlsx
 
 
 def main():
@@ -21,7 +22,9 @@ def main():
         login = mkgu_account['login']
         password = mkgu_account['password']
         mkgu_data.append(mkgu.parse_data(login, password))
-    print(mkgu_data)
+
+    save_xlsx = export_to_xlsx.ExportToXLSX(mkgu_data, config, first_date, last_date)
+    save_xlsx.save_file()
 
 
 if __name__ == '__main__':
