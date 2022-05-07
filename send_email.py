@@ -65,7 +65,7 @@ def convert_datetime_to_string(date):
 
 
 def create_text_one_filial_data(filial):
-    text = f"Название филиала: {filial['filial_name']}\n" \
+    text = f"{filial['filial_name']}\n" \
            f"Кол-во телефонных номеров: {filial['count_phone_numbers']}\n" \
            f"Кол-во оцененных факторов: {filial['count_factors']}\n" \
            f"Всего оценок: {filial['all_scores']}\n" \
