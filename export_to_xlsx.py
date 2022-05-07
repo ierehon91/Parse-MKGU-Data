@@ -37,8 +37,11 @@ class ExportToXLSX:
                                row['rating']
                                ])
 
+    def get_file_name(self):
+        return f'{self.first_date.strftime("%d.%m.%Y")}-{self.last_date.strftime("%d.%m.%Y")}'
+
     def _save_file(self):
-        file_name = f'{self.first_date.strftime("%d.%m.%Y")}-{self.last_date.strftime("%d.%m.%Y")}'
+        file_name = self.get_file_name()
         self.wb.save(fr'{self.config.get_xlsx_path()}/{file_name}.xlsx')
 
     def save_file(self):

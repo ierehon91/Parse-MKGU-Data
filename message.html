@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>Данные из МКГУ за период с {{ first_date }} по {{ last_date }}</h2>
+    <table border="1" cellpadding="0" cellspacing="0" style="margin:0; padding:0">
+            <td>Название филиала</td>
+            <td>Кол-во телефонных номеров</td>
+            <td>Кол-во оцененных факторов</td>
+            <td>Всего оценок</td>
+            <td>Оценок 1</td>
+            <td>Оценок 1</td>
+            <td>Оценок 1</td>
+            <td>Оценок 1</td>
+            <td>Оценок 1</td>
+            <td>Удовлетворенность</td>
+        </tr>
+        {% for filial in filials %}
+            <tr>
+                <td>{{ filial["filial_name"] }}</td>
+                <td>{{ filial["count_phone_numbers"] }}</td>
+                <td>{{ filial["count_factors"] }}</td>
+                <td>{{ filial["all_scores"] }}</td>
+                <td>{{ filial["score_1"] }}</td>
+                <td>{{ filial["score_2"] }}</td>
+                <td>{{ filial["score_3"] }}</td>
+                <td>{{ filial["score_4"] }}</td>
+                <td>{{ filial["score_5"] }}</td>
+                <td>{{ filial["rating"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

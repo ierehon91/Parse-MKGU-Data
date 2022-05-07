@@ -14,5 +14,5 @@ def get_mkgu_accounts_list():
 
 
 def print_counts_accounts(mkgu_accouts_list):
-    message = f'Найдено {len(mkgu_accouts_list)} учетных записей МКГУ.'
+    message = f'\nНайдено {len(mkgu_accouts_list)} учетных записей МКГУ.\n'
     print(message)
