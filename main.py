@@ -7,7 +7,7 @@ import send_email
 
 
 def main():
-    mkgu_accounts_list = parse_accounts_list.get_mkgu_accounts_list_txt()
+    mkgu_accounts_list = parse_accounts_list.get_mkgu_accounts_list()
     parse_accounts_list.print_counts_accounts(mkgu_accounts_list)
 
     config = parse_config.GetSettings()
