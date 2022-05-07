@@ -22,3 +22,9 @@ class GetSettings:
 
     def get_xlsx_path(self):
         return self.config["Settings"]["export_xlsx_path"]
+
+    def get_send_email_status(self):
+        if self.config['Settings']['send_email'] == '1':
+            return True
+        else:
+            return False

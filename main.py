@@ -27,8 +27,9 @@ def main():
     save_xlsx = export_to_xlsx.ExportToXLSX(mkgu_data, config, first_date, last_date)
     save_xlsx.save_file()
 
-    email = send_email.SendEmail(mkgu_data, config, first_date, last_date)
-    email.send_email()
+    if config.get_send_email_status() is True:
+        email = send_email.SendEmail(mkgu_data, config, first_date, last_date)
+        email.send_email()
 
 
 if __name__ == '__main__':
