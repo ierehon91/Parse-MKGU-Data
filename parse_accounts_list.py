@@ -16,6 +16,19 @@ def get_mkgu_accounts_list():
     return mkgu_accouts_list
 
 
+def get_mkgu_accounts_list_txt():
+    accounts_file = open('accounts.txt', 'r')
+    accounts_string = accounts_file.read().split('\n')
+    print(accounts_string)
+    accounts = []
+    for account in accounts_string:
+        login_password = account.split(' ')
+        login = login_password[0]
+        password = login_password[1]
+        accounts.append({'login': login, 'password': password})
+    return accounts
+
+
 def print_counts_accounts(mkgu_accouts_list):
     message = f'Найдено {len(mkgu_accouts_list)} учетных записей МКГУ.'
     print(message)

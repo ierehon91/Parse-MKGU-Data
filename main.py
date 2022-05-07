@@ -3,10 +3,11 @@ import parse_mkgu
 import input_dates
 import parse_config
 import export_to_xlsx
+import send_email
 
 
 def main():
-    mkgu_accounts_list = parse_accounts_list.get_mkgu_accounts_list()
+    mkgu_accounts_list = parse_accounts_list.get_mkgu_accounts_list_txt()
     parse_accounts_list.print_counts_accounts(mkgu_accounts_list)
 
     config = parse_config.GetSettings()
@@ -25,6 +26,9 @@ def main():
 
     save_xlsx = export_to_xlsx.ExportToXLSX(mkgu_data, config, first_date, last_date)
     save_xlsx.save_file()
+
+    email = send_email.SendEmail(mkgu_data, config, first_date, last_date)
+    email.send_email()
 
 
 if __name__ == '__main__':
