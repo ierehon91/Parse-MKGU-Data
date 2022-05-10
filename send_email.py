@@ -30,8 +30,9 @@ class SendEmail:
         subject = f'МКГУ за период с {first_date_string} по {last_date_string}'
         self.message["Subject"] = subject
 
-    def _set_from_mail(self):
+    def _set_from_to_mail(self):
         self.message["From"] = self.sender_email
+        self.message["To"] = self.receiver_emails
 
     def _create_message_text(self):
         text = ''
@@ -59,17 +60,16 @@ class SendEmail:
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.yandex.ru", 465, context=context) as server:
             server.login(self.sender_email, self.password)
-            for receiver_email in self.receiver_emails:
+            for email in self.receiver_emails.split(', '):
                 try:
-                    self.message["To"] = receiver_email
-                    server.sendmail(self.sender_email, receiver_email, self.message.as_string())
-                    print(f'Сообщение отправлено на почту {receiver_email}.')
+                    server.sendmail(self.sender_email, email, self.message.as_string())
+                    print(f'Данные успешно отправлены по адресу {email}')
                 except Exception as _ex:
                     print(_ex)
 
     def send_email(self):
         self._set_subject()
-        self._set_from_mail()
+        self._set_from_to_mail()
         self._attack_message()
         self._send_email()
 

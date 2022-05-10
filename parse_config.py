@@ -18,8 +18,7 @@ class GetSettings:
         return {'http': http, 'https': https}
 
     def get_emails(self):
-        emails_string = self.config["Settings"]["email"]
-        emails = emails_string.split(', ')
+        emails = self.config["Settings"]["email"]
         return emails
 
     def get_xlsx_path(self):
@@ -34,4 +33,4 @@ class GetSettings:
 
 if __name__ == '__main__':
     config = GetSettings()
-    print(config.get_emails())
+    print(config.get_emails().split(', '))
