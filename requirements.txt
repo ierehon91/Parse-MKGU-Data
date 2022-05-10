@@ -7,3 +7,5 @@ pip_packs/soupsieve-2.3.2.post1-py3-none-any.whl
 pip_packs/urllib3-1.24.3-py2.py3-none-any.whl
 pip_packs/beautifulsoup4-4.11.1-py3-none-any.whl
 pip_packs/requests-2.21.0-py2.py3-none-any.whl
+pip_packs/MarkupSafe-2.1.1-cp310-cp310-win_amd64.whl
+pip_packs/Jinja2-3.1.2-py3-none-any.whl

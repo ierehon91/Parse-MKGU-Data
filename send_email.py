@@ -2,6 +2,7 @@ import smtplib
 import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from jinja2 import Environment, FileSystemLoader
 
 
 class SendEmail:
@@ -18,6 +19,10 @@ class SendEmail:
         self.data = data
 
         self.message = MIMEMultipart("alternative")
+
+        file_loader = FileSystemLoader('templates')
+        env = Environment(loader=file_loader)
+        self.template = env.get_template('message.html')
 
     def _set_subject(self):
         first_date_string = convert_datetime_to_string(self.first_date)
@@ -41,9 +46,17 @@ class SendEmail:
             text += create_text_one_filial_data(filial)
         return text
 
+    def _create_message_html(self):
+        render_message = self.template.render(first_date=convert_datetime_to_string(self.first_date),
+                                              last_date=convert_datetime_to_string(self.last_date),
+                                              filials=self.data)
+        return render_message
+
     def _attack_message(self):
         part1 = MIMEText(self._create_message_text(), "plain")
+        part2 = MIMEText(self._create_message_html(), "html")
         self.message.attach(part1)
+        self.message.attach(part2)
 
     def _send_email(self):
         context = ssl.create_default_context()
