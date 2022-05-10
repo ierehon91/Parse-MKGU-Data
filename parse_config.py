@@ -4,7 +4,7 @@ import configparser
 class GetSettings:
     def __init__(self):
         self.config = configparser.ConfigParser()
-        self.config.read('settings.ini')
+        self.config.read('settings.ini', encoding='utf-8')
 
     def get_proxy_status(self):
         if self.config['Settings']['proxy'] == '1':

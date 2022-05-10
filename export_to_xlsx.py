@@ -42,7 +42,7 @@ class ExportToXLSX:
 
     def _save_file(self):
         file_name = self.get_file_name()
-        self.wb.save(fr'{self.config.get_xlsx_path()}/{file_name}.xlsx')
+        self.wb.save(fr'{self.config.get_xlsx_path()}\{file_name}.xlsx')
 
     def save_file(self):
         self._check_export_dir()
