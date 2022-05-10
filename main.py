@@ -42,7 +42,6 @@ def main():
     if config.get_send_email_status() is True:
         email = send_email.SendEmail(mkgu_data, config, first_date, last_date)
         email.send_email()
-        print(f'Сообщение отправлено на почту {config.get_email()}.')
 
 
 if __name__ == '__main__':

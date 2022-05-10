@@ -11,7 +11,7 @@ class SendEmail:
         login_password = sender_file.read().split(' ')
         self.sender_email = login_password[0]
         self.password = login_password[1]
-        self.receiver_email = config.get_email()
+        self.receiver_emails = config.get_emails()
 
         self.first_date = first_date
         self.last_date = last_date
@@ -30,16 +30,13 @@ class SendEmail:
         subject = f'МКГУ за период с {first_date_string} по {last_date_string}'
         self.message["Subject"] = subject
 
-    def _set_from_to_mail(self):
+    def _set_from_mail(self):
         self.message["From"] = self.sender_email
-        self.message["To"] = self.receiver_email
 
     def _create_message_text(self):
         text = ''
-        header_test = 'Это тестовое сообщение, отвечать на него не нужно!!!\n\n\n'
         header = f'Данные из МКГУ за период с {convert_datetime_to_string(self.first_date)} ' \
                  f'по {convert_datetime_to_string(self.last_date)}:\n\n\n'
-        text += header_test
         text += header
 
         for filial in self.data:
@@ -62,13 +59,17 @@ class SendEmail:
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.yandex.ru", 465, context=context) as server:
             server.login(self.sender_email, self.password)
-            server.sendmail(
-                self.sender_email, self.receiver_email, self.message.as_string()
-            )
+            for receiver_email in self.receiver_emails:
+                try:
+                    self.message["To"] = receiver_email
+                    server.sendmail(self.sender_email, receiver_email, self.message.as_string())
+                    print(f'Сообщение отправлено на почту {receiver_email}.')
+                except Exception as _ex:
+                    print(_ex)
 
     def send_email(self):
         self._set_subject()
-        self._set_from_to_mail()
+        self._set_from_mail()
         self._attack_message()
         self._send_email()
 

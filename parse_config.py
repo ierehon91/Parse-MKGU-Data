@@ -17,8 +17,10 @@ class GetSettings:
         https = fr'https://{self.config["Settings"]["proxy_https_ip"]}:{self.config["Settings"]["proxy_https_port"]}'
         return {'http': http, 'https': https}
 
-    def get_email(self):
-        return self.config["Settings"]["email"]
+    def get_emails(self):
+        emails_string = self.config["Settings"]["email"]
+        emails = emails_string.split(', ')
+        return emails
 
     def get_xlsx_path(self):
         return self.config["Settings"]["export_xlsx_path"]
@@ -28,3 +30,8 @@ class GetSettings:
             return True
         else:
             return False
+
+
+if __name__ == '__main__':
+    config = GetSettings()
+    print(config.get_emails())
