@@ -40,7 +40,7 @@ def main():
     print(f'Файл {save_xlsx.get_file_name()}.xlsx сохранён.')
 
     if config.get_send_email_status() is True:
-        email = send_email.SendEmail(mkgu_data, config, first_date, last_date)
+        email = send_email.SendEmail(mkgu_data, config, first_date, last_date, save_xlsx)
         email.send_email()
 
 

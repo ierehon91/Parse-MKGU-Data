@@ -1,12 +1,14 @@
 import smtplib
 import ssl
+from email import encoders
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
 from jinja2 import Environment, FileSystemLoader
 
 
 class SendEmail:
-    def __init__(self, data, config, first_date, last_date):
+    def __init__(self, data, config, first_date, last_date, xlsx_object):
         sender_file = open('sender.txt', 'r')
         login_password = sender_file.read().split(' ')
         self.sender_email = login_password[0]
@@ -18,11 +20,13 @@ class SendEmail:
 
         self.data = data
 
-        self.message = MIMEMultipart("alternative")
+        self.message = MIMEMultipart()
 
         file_loader = FileSystemLoader('templates')
         env = Environment(loader=file_loader)
         self.template = env.get_template('message.html')
+
+        self.xlsx_object = xlsx_object
 
     def _set_subject(self):
         first_date_string = convert_datetime_to_string(self.first_date)
@@ -50,11 +54,24 @@ class SendEmail:
                                               filials=self.data)
         return render_message
 
+    def _create_xlsx_file(self):
+        filename = self.xlsx_object.get_all_path()
+        with open(filename, "rb") as attachment:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(attachment.read())
+        encoders.encode_base64(part)
+        part.add_header(
+            'Content-Disposition',
+            'attachment', filename=f'{self.xlsx_object.get_file_name()}.xlsx'
+        )
+        return part
+
     def _attack_message(self):
-        part1 = MIMEText(self._create_message_text(), "plain")
+        # part1 = MIMEText(self._create_message_text(), "plain")
         part2 = MIMEText(self._create_message_html(), "html")
-        self.message.attach(part1)
+        # self.message.attach(part1)
         self.message.attach(part2)
+        self.message.attach(self._create_xlsx_file())
 
     def _send_email(self):
         context = ssl.create_default_context()

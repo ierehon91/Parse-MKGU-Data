@@ -40,9 +40,13 @@ class ExportToXLSX:
     def get_file_name(self):
         return f'{self.first_date.strftime("%d.%m.%Y")}-{self.last_date.strftime("%d.%m.%Y")}'
 
-    def _save_file(self):
+    def get_all_path(self):
+        path = self.config.get_xlsx_path()
         file_name = self.get_file_name()
-        self.wb.save(fr'{self.config.get_xlsx_path()}\{file_name}.xlsx')
+        return rf'{path}\{file_name}.xlsx'
+
+    def _save_file(self):
+        self.wb.save(f'{self.get_all_path()}')
 
     def save_file(self):
         self._check_export_dir()
