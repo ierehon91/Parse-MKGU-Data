@@ -3,38 +3,42 @@
 <head>
     <meta charset="UTF-8">
 </head>
-<body>
+<body style="{{ body }}">
     <h2>Данные из МКГУ за период с {{ first_date }} по {{ last_date }}</h2>
-    <table style="margin:0; padding:0; border: 1px solid black; border-collapse: collapse; font-size: 12px;">
-        <tr>
-            <th style="border: 1px solid black; border-collapse: collapse; width: 30%;">Название филиала</th>
-            <th style="border: 1px solid black; border-collapse: collapse; ">Кол-во телефонных номеров</th>
-            <th style="border: 1px solid black; border-collapse: collapse;">Кол-во оцененных факторов</th>
-            <th style="border: 1px solid black; border-collapse: collapse;">Всего оценок</th>
-            <th style="border: 1px solid black; border-collapse: collapse;">Оценок 1</th>
-            <th style="border: 1px solid black; border-collapse: collapse;">Оценок 2</th>
-            <th style="border: 1px solid black; border-collapse: collapse;">Оценок 3</th>
-            <th style="border: 1px solid black; border-collapse: collapse;">Оценок 4</th>
-            <th style="border: 1px solid black; border-collapse: collapse;">Оценок 5</th>
-            <th style="border: 1px solid black; border-collapse: collapse;">Удовлетворенность</th>
-        </tr>
+    <table style="{{ style['table'] }}">
+        <thead style="{{ style['thead'] }}">
+            <tr style="{{ style['thead_tr'] }}">
+                <th style="{{ style['th_filial_name'] }}">Название филиала</th>
+                <th style="{{ style['th_count_phone_numbers'] }}">Кол-во телефонных номеров</th>
+                <th style="{{ style['th_count_factors'] }}">Кол-во оцененных факторов</th>
+                <th style="{{ style['th_all_scores'] }}">Всего оценок</th>
+                <th style="{{ style['th_score_1'] }}">Оценок 1</th>
+                <th style="{{ style['th_score_2'] }}">Оценок 2</th>
+                <th style="{{ style['th_score_3'] }}">Оценок 3</th>
+                <th style="{{ style['th_score_4'] }}">Оценок 4</th>
+                <th style="{{ style['th_score_5'] }}">Оценок 5</th>
+                <th style="{{ style['th_rating'] }}">Удовлетворенность</th>
+            </tr>
+        </thead>
+        <tbody style="style['tbody']">
         {% for filial in filials %}
-            <tr style="text-align: center; vertical-align: middle;">
-                <td style="border: 1px solid black; border-collapse: collapse; text-align: left; vertical-align: middle;">{{ filial["filial_name"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["count_phone_numbers"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["count_factors"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["all_scores"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["score_1"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["score_2"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["score_3"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["score_4"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["score_5"] }}</td>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{ filial["rating"] }}%</td>
+            <tr style="{{ style['tbody_tr'] }}">
+                <td style="{{ style['td_filial_name'] }}">{{ filial["filial_name"] }}</td>
+                <td style="{{ style['td_count_phone_numbers'] }}">{{ filial["count_phone_numbers"] }}</td>
+                <td style="{{ style['td_count_factors'] }}">{{ filial["count_factors"] }}</td>
+                <td style="{{ style['td_all_scores'] }}">{{ filial["all_scores"] }}</td>
+                <td style="{{ style['td_score_1'] }}">{{ filial["score_1"] }}</td>
+                <td style="{{ style['td_score_2'] }}">{{ filial["score_2"] }}</td>
+                <td style="{{ style['td_score_3'] }}">{{ filial["score_3"] }}</td>
+                <td style="{{ style['td_score_4'] }}">{{ filial["score_4"] }}</td>
+                <td style="{{ style['td_score_5'] }}">{{ filial["score_5"] }}</td>
+                <td style="{{ style['td_rating'] }}">{{ filial["rating"] }}%</td>
             </tr>
         {% endfor %}
+        </tbody>
     </table>
     <br><br>
-    <p style="font-size: 13px;">Данные получены при помощи "МКГУ Парсер МФЦ"</p>
-    <p style="font-size: 12px; color: gray">Плеханов Андрей Николаевич<br>Филиал АУ "МФЦ" в г. Семилуки<br>тел. 772-127</p>
+    <p style="{{ style['program_name'] }}">Данные получены при помощи "МКГУ Парсер МФЦ"</p>
+    <p style="{{ style['author'] }}">Плеханов Андрей Николаевич<br>Филиал АУ "МФЦ" в г. Семилуки<br>тел. 772-127</p>
 </body>
 </html>

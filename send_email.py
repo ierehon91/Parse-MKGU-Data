@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from jinja2 import Environment, FileSystemLoader
+import style_email
 
 
 class SendEmail:
@@ -19,6 +20,7 @@ class SendEmail:
         self.last_date = last_date
 
         self.data = data
+        self.style = style_email.get_style()
 
         self.message = MIMEMultipart()
 
@@ -51,7 +53,8 @@ class SendEmail:
     def _create_message_html(self):
         render_message = self.template.render(first_date=convert_datetime_to_string(self.first_date),
                                               last_date=convert_datetime_to_string(self.last_date),
-                                              filials=self.data)
+                                              filials=self.data,
+                                              style = self.style)
         return render_message
 
     def _create_xlsx_file(self):
